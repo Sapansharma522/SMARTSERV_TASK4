@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+    <head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Company Metrics Dashboard</title>
+
+<style>
+    #myChart {
+        width: 250%;
+        max-width: 600px;
+        
+    }
+
+    #myChart2 {
+        width: 250%;
+        max-width: 600px;
+        
+        
+    }
+    
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: lightblue;
+}
+
+header {
+
+    color: #fff;
+    padding: 15px;
+    
+    margin-top: 0px;
+    display: flex;
+    flex-direction: column; /* Set flex-direction to column */
+    justify-content: space-between;
+    align-items: center;
+    height:150px ;
+    width: 101%;
+    margin-left: -20px;
+}
+
+.top-values,
+.bottom-values {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+
+}
+
+.value-box {
+    background-color:white;
+    color: green;
+    padding: 15px;
+    border-radius: 5px;
+    text-align: center;
+    display: flex;
+    width:180px;
+    height: 40px;
+    font-size: 13px;
+    
+}
+
+
+.c1{
+    float:right;
+}
+.c2{
+    float:left;
+}
+.special{
+    color:red;
+}
+
+
+</style>
+</head>
+
+<body>
+    <h2>Company Metrics</h2>
+    <header>
+        <div class="top-values">
+            <div class="value-box">
+                <span>$406,411.29</span>
+                <p>Total Revenue</p>
+            </div>
+            <div class="value-box">
+                <span>$620</span>
+                <p>Total Jobs Avg</p>
+            </div>
+            <div class="value-box">
+                <span>655</span>
+                <p>Tickets Created</p>
+            </div>
+            <div class="value-box">
+                <span>735</span>
+                <p>Tickets Scheduled</p>
+            </div>
+        </div>
+
+        <div class="bottom-values">
+            <div class="value-box">
+                <div class="special">
+              <span>$110448.8</span>
+                <p>Outstanding Amount</p>
+                
+                </div>
+            </div>
+            <div class="value-box">
+                <span>105</span>
+                <p>Memebership sold</p>
+            </div>
+            <div class="value-box">
+                <span>436</span>
+                <p>Jobs Completed</p>
+            </div>
+            <div class="value-box">
+                <span>65</span>
+                <p>Total canceled</p>
+            </div>
+        </div>
+
+    </header>
+<div class="c1">
+    <h2 class="bot">Revenue By Job Location</h2>
+    <canvas id="myChart"></canvas>
+    </div>
+    <div class="c2">
+    <h2>Revenue By Job Type</h2>
+    <canvas id="myChart2"></canvas>
+    </div>
+
+    <script>
+        const xValues = ["Service Plumbing", "Bid Work HVAC", "Service HVAC", "Bid Work Plumbing", "HWT Replacement", "Maintenance", "Materail Sale"];
+        const yValues = [180000, 130000, 80000, 75000, 45000, 41000, 3000];
+        const barColors = ["green", "green", "green", "green", "green", "green", "green"];
+
+        new Chart("myChart", {
+            type: "horizontalBar",
+            data: {
+                labels: xValues,
+                datasets: [{
+                    backgroundColor: barColors,
+                    data: yValues
+                }]
+            },
+            options: {
+                legend: { display: false },
+                title: {
+                    display: true,
+                    text: "Revenue for November 2019"
+                }
+            }
+        });
+
+    </script>
+    <script>
+        const x = ["Everett", "Seattle", "Lynwood", "Bothell", "Mukilteo", "Edmonds"];
+        const y = [180000, 130000, 80000, 75000, 45000, 41000];
+        const color = ["green", "green", "green", "green", "green", "green"];
+
+        new Chart("myChart2", {
+            type: "horizontalBar",
+            data: {
+                labels: x,
+                datasets: [{
+                    backgroundColor: color,
+                    data: y
+                }]
+            },
+            options: {
+                legend: { display: false },
+                title: {
+                    display: true,
+                    text: "Revenue for November 2019"
+                }
+            }
+        });
+    </script>
+
+</body>
+
+</html>

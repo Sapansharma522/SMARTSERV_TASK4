@@ -1,0 +1,168 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>User Login Form</title>
+
+</head>
+<style>
+    body {
+        margin: 0px;
+        padding: 0px;
+        font-family: sans-serif;
+        background: black;
+    }
+    .outer{
+		height: 470px;
+		width: 500px;
+        padding: 40px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: #232b2b;
+        text-align: center;
+	}
+    .box {
+        width: 300px;
+        padding: 40px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background:#181716;
+        text-align: center;
+    }
+    
+    .box h1 {
+        color: white;
+        text-transform: uppercase;
+        font-weight: 500;
+
+    }
+
+    .box input[type="text"],
+    .box input[type="password"] {
+        border: 0;
+        background: none;
+        display: block;
+        margin: 20px auto;
+        text-align: left;
+        border: 2px solid white;
+        padding: 14px 10px;
+        width: 250px;
+        outline: none;
+        color: white;
+        border-radius: 8px;
+        transition: 0.25s;
+    }
+
+    
+
+    .bold[type="submit"] {
+        border: 0;
+        background: none;
+        display: block;
+        margin: 20px auto;
+        text-align: center;
+        border: 2px solid #2ecc71;
+        padding: 14px 40px;
+        cursor: pointer;
+        outline: none;
+        color: white;
+        border-radius: 8px;
+        transition: 0.25s;
+        background: #2ecc71;
+		width: 250px;
+    }
+	a{
+		color: blue;
+	}
+    img{
+        height:50px;
+        width:240px;
+    }
+</style>
+
+<body>
+   
+<body>
+    <div class="outer">
+        <div class="box">
+            <form action="" method="post" onsubmit="return validateForm()">
+
+                <img src="logo.png" alt="">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="email" name="email" placeholder="Enter email"
+                        name="email" oninput="validateEmail()">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" id="password" name="password"
+                        placeholder="Enter password" name="pswd" oninput="validatePassword()">
+                </div>
+                <button type="submit" class="bold">Login</button>
+                <p><u><a href="#" onclick="openEmailClient()">Forget Your Password</a></u></p>
+            </form>
+        </div>
+    </div>
+	<script>
+        function validateEmail() {
+            var emailInput = document.getElementById('email');
+            var email = emailInput.value.trim();
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!emailRegex.test(email)) {
+                emailInput.setCustomValidity('Please enter a valid email address');
+            } else {
+                emailInput.setCustomValidity('');
+            }
+        }
+
+        function validatePassword() {
+            var passwordInput = document.getElementById('password');
+            var password = passwordInput.value.trim();
+            var passwordRegex = /^(?=.*[A-Z])(?=.*\d)[a-zA-Z\d@]+$/;
+
+            if (!passwordRegex.test(password)) {
+                passwordInput.setCustomValidity('Password must contain at least one uppercase letter, one number, and only @ as a special character');
+            } else {
+                passwordInput.setCustomValidity('');
+            }
+        }
+
+        
+        function validateForm() {
+            validateEmail();
+            validatePassword();
+
+           
+
+            var passwordInput = document.getElementById('password');
+            var enteredPassword = passwordInput.value.trim();
+
+            // Check if the entered password is correct
+            if (enteredPassword === 'SmartServTest@123') {
+                // Redirect to the dashboard page (t6.html)
+                window.location.href = 'dashboard.html';
+                return false; // Show blank page
+            }
+
+            return document.getElementById('email').checkValidity() && passwordInput.checkValidity();
+        }
+
+        function openEmailClient() {
+            
+            var emailSubject = 'Password Reset Request';
+            var emailBody = 'Dear support@smartserv.io,\n\nI would like to request a password reset. Please assist.\n\nSincerely,\n[Your Name]';
+
+            var mailtoLink = 'mailto:support@smartserv.io?subject=' + encodeURIComponent(emailSubject) + '&body=' + encodeURIComponent(emailBody);
+
+           
+            window.location.href = mailtoLink;
+        }
+    </script>
+
+</body>
+
+</html>
